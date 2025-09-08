@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/JavaMirea.iml" filepath="$PROJECT_DIR$/JavaMirea.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaMireaCore/JavaMireaCore.iml" filepath="$PROJECT_DIR$/JavaMireaCore/JavaMireaCore.iml" />
+    </modules>
+  </component>
+</project>
