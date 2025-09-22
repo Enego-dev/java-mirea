@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/JavaMirea/JavaMireaCore/JavaMireaCore.iml" filepath="$PROJECT_DIR$/JavaMirea/JavaMireaCore/JavaMireaCore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaMirea/JavaMireaHelper/JavaMireaHelper.iml" filepath="$PROJECT_DIR$/JavaMirea/JavaMireaHelper/JavaMireaHelper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/java-mirea.iml" filepath="$PROJECT_DIR$/.idea/java-mirea.iml" />
+    </modules>
+  </component>
+</project>
