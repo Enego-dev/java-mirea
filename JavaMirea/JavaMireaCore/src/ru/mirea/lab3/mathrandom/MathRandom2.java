@@ -1,4 +1,4 @@
-package ru.mirea.lab3;
+package ru.mirea.lab3.mathrandom;
 
 import java.util.Random;
 
@@ -10,7 +10,7 @@ public class MathRandom2 {
 
         while (!isSorted){
             for (int i = 0; i < 4; i++) {
-                arr[i] = 10 + random.nextInt(90);
+                arr[i] = random.nextInt(10, 100);
             }
 
             for (var e : arr){

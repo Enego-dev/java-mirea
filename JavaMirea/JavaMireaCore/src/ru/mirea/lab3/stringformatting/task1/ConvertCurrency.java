@@ -1,4 +1,4 @@
-package ru.mirea.lab3;
+package ru.mirea.lab3.stringformatting.task1;
 
 public class ConvertCurrency {
     private float exchange = 80;
@@ -11,11 +11,11 @@ public class ConvertCurrency {
         exchange = value;
     }
 
-    public float getRuble(float USdollarCount){
-        return USdollarCount * exchange;
+    public float getRuble(float dollarCount){
+        return dollarCount * exchange;
     }
 
-    public float getDollar(float RubleCount){
-        return RubleCount / exchange;
+    public float getDollar(float rubleCount){
+        return rubleCount / exchange;
     }
 }

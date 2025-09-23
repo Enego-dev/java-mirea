@@ -1,4 +1,4 @@
-package ru.mirea.lab3;
+package ru.mirea.lab3.shells;
 
 import java.util.Random;
 
@@ -13,16 +13,23 @@ public class Shell1 {
             System.out.println(dbl.getClass() + ": " + dbl);
         }
 
-        System.out.println("\n");
+
+
         // 2. Преобразовать значение типа String к типу double. Используем метод Double.parseDouble().
+        System.out.println("\n");
+
         for (int i = 0; i < 10; i++) {
             var str = String.valueOf(random.nextDouble(0, 10));
             var dbl = Double.parseDouble(str);
             System.out.println(dbl);
         }
 
-        System.out.println("\n");
+
+
+
         // 3. Преобразование к примитивным типам
+        System.out.println("\n");
+
         var newDouble = 1255125.66236d;
         var newByte = (byte) newDouble;
         var newShort = (short) newDouble;

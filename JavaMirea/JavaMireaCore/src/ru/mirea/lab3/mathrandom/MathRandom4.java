@@ -1,4 +1,4 @@
-package ru.mirea.lab3;
+package ru.mirea.lab3.mathrandom;
 
 import java.util.Random;
 import java.util.Scanner;

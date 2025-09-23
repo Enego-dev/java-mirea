@@ -1,4 +1,4 @@
-package ru.mirea.lab3;
+package ru.mirea.lab3.mathrandom;
 
 import java.util.Arrays;
 
@@ -9,13 +9,13 @@ public class MathRandom1 {
             arr[i] = Math.random();
         }
 
-        System.out.println("Неотсортированный массив вещественных чисел:");
+        System.out.println("\nНеотсортированный массив вещественных чисел:");
 
         for (var e : arr){
             System.out.println(e);
         }
 
-        System.out.println("Сортируем:");
+        System.out.println("\nСортируем:");
 
         arr = Arrays.stream(arr).sorted().toArray();
 

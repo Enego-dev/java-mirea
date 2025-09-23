@@ -1,4 +1,4 @@
-package ru.mirea.lab3;
+package ru.mirea.lab3.stringformatting.task3;
 
 public class EmployeeTest {
     public static void main(String[] args) {
