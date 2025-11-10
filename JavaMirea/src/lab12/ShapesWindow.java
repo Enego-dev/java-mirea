@@ -2,7 +2,7 @@ package lab12;
 
 import javax.swing.*;
 import java.awt.*;
-
+// сделать милан и добавить мячик при наэатии
 public class ShapesWindow {
     static void main() {
         var frame = new JFrame("Shapes");

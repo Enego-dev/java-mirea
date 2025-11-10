@@ -1,15 +1,14 @@
 package lab11;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Task2 {
     static void main() {
-        var calendar = Calendar.getInstance();
-        var dt = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
-        var currentTime = calendar.getTime();
-        //IO.println(dt.format(currentTime));
+        var date = new Date();
+        var dt = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        var currentTime = date.getTime();
 
         IO.println("Введите дату в формате день.месяц.год час:минута:секунда");
 
@@ -17,25 +16,43 @@ public class Task2 {
         var customDate = scanner.nextLine();
         var splitCustomDate = customDate.split(" ");
 
-        var date = splitCustomDate[0];
-        var time = splitCustomDate[1];
+        var datePart = splitCustomDate[0];
+        var timePart = splitCustomDate[1];
 
-        var splitDate = date.split("\\.");
-        var splitTime = time.split(":");
+        var splitDate = datePart.split("\\.");
+        var splitTime = timePart.split(":");
 
-        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(splitDate[0]));
-        calendar.set(Calendar.MONTH, Integer.parseInt(splitDate[1]));
-        calendar.set(Calendar.YEAR, Integer.parseInt(splitDate[2]));
-        calendar.set(Calendar.HOUR, Integer.parseInt(splitTime[0]));
-        calendar.set(Calendar.MINUTE, Integer.parseInt(splitTime[1]));
-        calendar.set(Calendar.SECOND, Integer.parseInt(splitTime[2]));
+        int day = Integer.parseInt(splitDate[0]);
+        int month = Integer.parseInt(splitDate[1]);
+        int year = Integer.parseInt(splitDate[2]);
+        int hours = Integer.parseInt(splitTime[0]);
+        int minutes = Integer.parseInt(splitTime[1]);
+        int seconds = Integer.parseInt(splitTime[2]);
 
-        var customTime = calendar.getTime();
+        var calendar = java.util.Calendar.getInstance();
+        calendar.setLenient(false);
+        calendar.set(year, month - 1, day, hours, minutes, seconds);
 
-        IO.println(dt.format(currentTime));
-        IO.println(dt.format(customTime));
+        try {
+            calendar.getTime();
 
-        IO.println("Введенное время больше системного или нет?");
-        IO.println(customTime.after(currentTime));
+            date.setDate(day);
+            date.setMonth(month - 1);
+            date.setYear(year - 1900);
+            date.setHours(hours);
+            date.setMinutes(minutes);
+            date.setSeconds(seconds);
+
+            var customTime = date.getTime();
+
+            IO.println(dt.format(currentTime));
+            IO.println(dt.format(customTime));
+
+            IO.println("Введенное время больше системного или нет?");
+            IO.println(customTime > currentTime);
+
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Некорректная дата: " + customDate);
+        }
     }
 }
