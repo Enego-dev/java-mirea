@@ -22,8 +22,16 @@ public class ProductMVCDemo {
         productFinderLabel.setHorizontalAlignment(SwingConstants.CENTER);
         frame.getContentPane().add(productFinderLabel);
 
+        // На пк
         var appleIcon = new ImageIcon("src/lab17/products/Яблоко.png");
         var bananaIcon = new ImageIcon("src/lab17/products/Банан.jpg");
+
+        // На ноутбуке
+        appleIcon = new ImageIcon("JavaMirea/src/lab17/products/Яблоко.png");
+        bananaIcon = new ImageIcon("JavaMirea/src/lab17/products/Банан.jpg");
+
+        final var finalApple = appleIcon;
+        final var finalBanana = bananaIcon;
 
         var appleButton = new JButton();
         appleButton.setIcon(appleIcon);
@@ -40,13 +48,13 @@ public class ProductMVCDemo {
         appleButton.addActionListener(e -> {
             product.setName("Яблоко");
             product.setPrice(50);
-            controller.updateView(frame, appleIcon);
+            controller.updateView(frame, finalApple);
         });
 
         bananaButton.addActionListener(e -> {
             product.setName("Банан");
             product.setPrice(100);
-            controller.updateView(frame, bananaIcon);
+            controller.updateView(frame, finalBanana);
         });
 
         frame.setVisible(true);
