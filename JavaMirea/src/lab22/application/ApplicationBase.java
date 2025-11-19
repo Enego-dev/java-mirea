@@ -1,0 +1,79 @@
+package lab22.application;
+
+import lab22.CalculatorRPN;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class ApplicationBase {
+    static void main() {
+        // Создание основного окна
+        JFrame frame = new JFrame("MyCalculator");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setSize(400, 500);
+        frame.setLocationRelativeTo(null);
+
+        // Создание и настройка текстовой области
+        JTextArea display = new JTextArea(2, 20);
+        display.setEditable(false);
+        display.setFont(new Font("MS Sans Serif", Font.PLAIN, 14));
+        display.setMargin(new Insets(10, 10, 10, 10));
+
+        var sb = new StringBuilder();
+        var model = new CalculatorRPN();
+        var view = new ApplicationView(display);
+        var controller = new ApplicationController(model, view);
+
+        // Создание панели для кнопок
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(5, 4, 10, 10));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        // Массив подписей кнопок
+        String[] buttons = {
+                "7", "8", "9", "/",
+                "4", "5", "6", "*",
+                "1", "2", "3", "-",
+                "0", ".", "+", "=",
+                " ", " ", " ", " "  // Кнопка пробела и три пустые кнопки для выравнивания
+        };
+
+        // Создание кнопок
+        for (String text : buttons) {
+            JButton button = new JButton(text);
+            button.setFont(new Font("MS Sans Serif", Font.PLAIN, 14));
+            button.setPreferredSize(new Dimension(80, 60));
+            buttonPanel.add(button);
+            button.addActionListener(e -> {
+                var buttonText = button.getText();
+                if (!buttonText.contains("=")){
+                    sb.append(buttonText);
+                    controller.updateView(sb.toString());
+                }
+
+                if (buttonText.contains("=")){
+                    try {
+                        controller.calculate(sb.toString());
+                        var ans = controller.getAnswer();
+                        controller.updateView(ans);
+                        sb.setLength(0);
+                    } catch (InvalidExpressionException ex){
+                        controller.updateView("Уравнение содержит ошибку!");
+                        sb.setLength(0);
+                    }
+                }
+            });
+        }
+
+        // Компоновка интерфейса
+        frame.setLayout(new BorderLayout(10, 10));
+        frame.add(display, BorderLayout.NORTH);
+        frame.add(buttonPanel, BorderLayout.CENTER);
+
+        // Отступы вокруг компонентов
+        ((JComponent) frame.getContentPane()).setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        frame.setVisible(true);
+    }
+}
