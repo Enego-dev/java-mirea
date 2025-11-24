@@ -25,6 +25,70 @@ public class Calculator {
 
                 if (text.matches("[/*+-]")) {
                     IO.println("нашел математическую операцию");
+
+                    // Проверяем, можно ли добавить оператор
+                    if (sb.isEmpty()) {
+                        return; // Нельзя начинать с оператора
+                    }
+
+                    String currentText = sb.toString();
+                    // Проверяем, не заканчивается ли строка уже на оператор или точку
+                    if (currentText.endsWith(" ") || currentText.matches(".*[/*+\\-.]$")) {
+                        return; // Нельзя добавлять оператор после другого оператора или точки
+                    }
+
+                    sb.append(" ").append(text).append(" ");
+
+                } else if (text.matches("[0-9.]")) {
+                    IO.println("нашел цифру или точку");
+
+                    // Особые проверки для точки
+                    if (text.equals(".")) {
+                        String currentText = sb.toString();
+
+                        // Если строка пустая, добавляем "0." вместо просто "."
+                        if (sb.isEmpty()) {
+                            sb.append("0.");
+                            return;
+                        }
+
+                        // Проверяем, есть ли уже точка в текущем числе
+                        // Разбиваем строку по пробелам и берем последний элемент (текущее число)
+                        String[] parts = currentText.split(" ");
+                        String lastPart = parts[parts.length - 1];
+
+                        // Если в последнем числе уже есть точка, не добавляем новую
+                        if (lastPart.contains(".")) {
+                            return;
+                        }
+
+                        // Проверяем, не является ли последний символ оператором
+                        if (currentText.endsWith(" ")) {
+                            // Если после оператора сразу точка, добавляем "0."
+                            sb.append("0.");
+                            return;
+                        }
+                    }
+
+                    sb.append(text);
+
+                } else if (text.equals("=")) {
+                    IO.println("нашел равно");
+                    if (sb.length() % 2 == 0) return;
+                    calculatorWindow.displayPanel.answerLabel.setText("= " + calculateExpression(sb.toString()));
+                    sb.setLength(0);
+                    return; // важно - не обновляем expressionLabel
+                }
+
+                calculatorWindow.displayPanel.expressionLabel.setText(sb.toString());
+            });
+            /*button.addActionListener(e -> {
+                if (!calculatorWindow.displayPanel.answerLabel.getText().isEmpty()) {
+                    calculatorWindow.displayPanel.answerLabel.setText("");
+                }
+
+                if (text.matches("[/*+-]")) {
+                    IO.println("нашел математическую операцию");
                     if (sb.isEmpty() || sb.toString().endsWith(" ")) return;
                     sb.append(" ").append(text).append(" ");
 
@@ -41,7 +105,7 @@ public class Calculator {
                 }
 
                 calculatorWindow.displayPanel.expressionLabel.setText(sb.toString());
-            });
+            });*/
         }
     }
 
