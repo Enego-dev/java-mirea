@@ -58,9 +58,9 @@ public class ApplicationBase {
 
                         String currentText = sb.toString();
                         // Проверяем, не заканчивается ли строка уже на оператор ИЛИ пробел перед оператором
-                        if (currentText.matches(".*[/*+\\-]$") || currentText.endsWith(" ")) {
+                        /*if (currentText.matches(".*[/*+\\-]$") || currentText.endsWith(" ")) {
                             return; // Нельзя добавлять оператор после другого оператора или после пробела
-                        }
+                        }*/
 
                         // Добавляем оператор с пробелами для парсера
                         sb.append(" ").append(buttonText).append(" ");
